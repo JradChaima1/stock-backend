@@ -1,9 +1,6 @@
 package com.jrad.gestiondestock.model;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.Instant;
 import java.util.List;
@@ -25,4 +22,5 @@ public class CommandeFournisseur extends AbstractEntity{
     private Fournisseur fournisseur;
     @OneToMany(mappedBy = "commandeFournisseur")
     private List<LigneCommandeFournisseur> ligneCommandeFournisseurs;
+
 }

@@ -1,12 +1,9 @@
 package com.jrad.gestiondestock.model;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.Instant;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,7 +12,15 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "ventes")
 public class Ventes  extends AbstractEntity{
-    @ManyToOne
-    @JoinColumn(name = "idarticle")
-    private Article article;
+    @Column(name = "code")
+    private String code;
+
+    @Column(name = "datevente")
+    private Instant dateVente;
+
+    @Column(name = "commentaire")
+    private String commentaire;
+
+
+
 }
