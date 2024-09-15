@@ -1,24 +1,27 @@
 package com.jrad.gestiondestock.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jrad.gestiondestock.model.CommandeFournisseur;
 import com.jrad.gestiondestock.model.LigneCommandeFournisseur;
 import lombok.Builder;
 import lombok.Data;
+
 
 import java.math.BigDecimal;
 @Data
 @Builder
 public class LigneCommandeFournisseurDto {
     private Integer id;
+
     private ArticleDto article;
 
-    @JsonIgnore
-    private CommandeFournisseurDto commandeFournisseur;
+    private CommandeFournisseur commandeFournisseur;
 
     private BigDecimal quantite;
 
-
     private BigDecimal prixUnitaire;
+
+    private Integer idEntreprise;
 
     public static LigneCommandeFournisseurDto fromEntity(LigneCommandeFournisseur ligneCommandeFournisseur) {
         if (ligneCommandeFournisseur == null) {
@@ -29,7 +32,7 @@ public class LigneCommandeFournisseurDto {
                 .article(ArticleDto.fromEntity(ligneCommandeFournisseur.getArticle()))
                 .quantite(ligneCommandeFournisseur.getQuantite())
                 .prixUnitaire(ligneCommandeFournisseur.getPrixUnitaire())
-
+                .idEntreprise(ligneCommandeFournisseur.getIdEntreprise())
                 .build();
     }
 
@@ -43,7 +46,7 @@ public class LigneCommandeFournisseurDto {
         ligneCommandeFournisseur.setArticle(ArticleDto.toEntity(dto.getArticle()));
         ligneCommandeFournisseur.setPrixUnitaire(dto.getPrixUnitaire());
         ligneCommandeFournisseur.setQuantite(dto.getQuantite());
-
+        ligneCommandeFournisseur.setIdEntreprise(dto.getIdEntreprise());
         return ligneCommandeFournisseur;
     }
 }

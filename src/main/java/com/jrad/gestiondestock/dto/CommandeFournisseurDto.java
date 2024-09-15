@@ -6,6 +6,7 @@ import com.jrad.gestiondestock.model.Fournisseur;
 import com.jrad.gestiondestock.model.LigneCommandeFournisseur;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
+import com.jrad.gestiondestock.model.EtatCommande;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Builder;
@@ -17,13 +18,19 @@ import java.util.List;
 @Builder
 public class CommandeFournisseurDto {
     private Integer id;
+
     private String code;
 
     private Instant dateCommande;
 
+    private EtatCommande etatCommande;
 
     private FournisseurDto fournisseur;
+
+    private Integer idEntreprise;
+
     private List<LigneCommandeFournisseurDto> ligneCommandeFournisseurs;
+
     public static CommandeFournisseurDto fromEntity(CommandeFournisseur commandeFournisseur) {
         if (commandeFournisseur == null) {
             return null;
@@ -33,7 +40,8 @@ public class CommandeFournisseurDto {
                 .code(commandeFournisseur.getCode())
                 .dateCommande(commandeFournisseur.getDateCommande())
                 .fournisseur(FournisseurDto.fromEntity(commandeFournisseur.getFournisseur()))
-
+                .etatCommande(commandeFournisseur.getEtatCommande())
+                .idEntreprise(commandeFournisseur.getIdEntreprise())
                 .build();
     }
 
@@ -46,6 +54,9 @@ public class CommandeFournisseurDto {
         commandeFournisseur.setCode(dto.getCode());
         commandeFournisseur.setDateCommande(dto.getDateCommande());
         commandeFournisseur.setFournisseur(FournisseurDto.toEntity(dto.getFournisseur()));
+        commandeFournisseur.setIdEntreprise(dto.getIdEntreprise());
+        commandeFournisseur.setEtatCommande(dto.getEtatCommande());
         return commandeFournisseur;
     }
+
 }

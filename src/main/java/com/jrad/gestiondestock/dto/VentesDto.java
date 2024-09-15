@@ -13,12 +13,16 @@ import java.util.List;
 @Builder
 public class VentesDto {
     private Integer id;
-    private String code;
 
+    private String code;
 
     private Instant dateVente;
 
     private String commentaire;
+
+    private List<LigneVenteDto> ligneVentes;
+
+    private Integer idEntreprise;
 
     public static VentesDto fromEntity(Ventes vente) {
         if (vente == null) {
@@ -28,7 +32,7 @@ public class VentesDto {
                 .id(vente.getId())
                 .code(vente.getCode())
                 .commentaire(vente.getCommentaire())
-
+                .idEntreprise(vente.getIdEntreprise())
                 .build();
     }
 
@@ -40,7 +44,7 @@ public class VentesDto {
         ventes.setId(dto.getId());
         ventes.setCode(ventes.getCode());
         ventes.setCommentaire(dto.getCommentaire());
-
+        ventes.setIdEntreprise(dto.getIdEntreprise());
         return ventes;
     }
 }

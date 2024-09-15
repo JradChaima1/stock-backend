@@ -9,14 +9,20 @@ import jakarta.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.Instant;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Data
 @Builder
 public class RolesDto {
     private Integer id;
+
     private String roleName;
 
     @JsonIgnore
     private UtilisateurDto utilisateur;
+
     public static RolesDto fromEntity(Roles roles) {
         if (roles == null) {
             return null;
@@ -34,7 +40,8 @@ public class RolesDto {
         Roles roles = new Roles();
         roles.setId(dto.getId());
         roles.setRoleName(dto.getRoleName());
-
+        roles.setUtilisateur(UtilisateurDto.toEntity(dto.getUtilisateur()));
         return roles;
     }
+
 }

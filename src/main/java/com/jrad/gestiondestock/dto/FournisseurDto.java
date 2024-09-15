@@ -17,6 +17,7 @@ import java.util.List;
 public class FournisseurDto {
 
     private Integer id;
+
     private String nom;
 
     private String prenom;
@@ -25,11 +26,15 @@ public class FournisseurDto {
 
     private String photo;
 
-    private String email;
+    private String mail;
 
     private String numTel;
+
+    private Integer idEntreprise;
+
     @JsonIgnore
-    private List<CommandeFournisseurDto> commandefournisseurs;
+    private List<CommandeFournisseurDto> commandeFournisseurs;
+
     public static FournisseurDto fromEntity(Fournisseur fournisseur) {
         if (fournisseur == null) {
             return null;
@@ -40,9 +45,9 @@ public class FournisseurDto {
                 .prenom(fournisseur.getPrenom())
                 .adresse(AdresseDto.fromEntity(fournisseur.getAdresse()))
                 .photo(fournisseur.getPhoto())
-                .email(fournisseur.getEmail())
+                .mail(fournisseur.getMail())
                 .numTel(fournisseur.getNumTel())
-
+                .idEntreprise(fournisseur.getIdEntreprise())
                 .build();
     }
 
@@ -56,9 +61,9 @@ public class FournisseurDto {
         fournisseur.setPrenom(dto.getPrenom());
         fournisseur.setAdresse(AdresseDto.toEntity(dto.getAdresse()));
         fournisseur.setPhoto(dto.getPhoto());
-        fournisseur.setEmail(dto.getEmail());
+        fournisseur.setMail(dto.getMail());
         fournisseur.setNumTel(dto.getNumTel());
-
+        fournisseur.setIdEntreprise(dto.getIdEntreprise());
 
         return fournisseur;
     }

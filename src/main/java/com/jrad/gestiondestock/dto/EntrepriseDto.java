@@ -14,31 +14,27 @@ import java.util.List;
 @Data
 public class EntrepriseDto {
     private Integer id;
-    private String nom;
 
+    private String nom;
 
     private String description;
 
-    @Embedded
     private AdresseDto adresse;
-
 
     private String codeFiscal;
 
-
     private String photo;
-
 
     private String email;
 
-
     private String numTel;
-
 
     private String steWeb;
 
+
     @JsonIgnore
     private List<UtilisateurDto> utilisateurs;
+
     public static EntrepriseDto fromEntity(Entreprise entreprise) {
         if (entreprise == null) {
             return null;
@@ -73,4 +69,5 @@ public class EntrepriseDto {
 
         return entreprise;
     }
+
 }

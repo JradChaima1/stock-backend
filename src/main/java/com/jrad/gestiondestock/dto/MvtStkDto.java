@@ -2,10 +2,12 @@ package com.jrad.gestiondestock.dto;
 
 import com.jrad.gestiondestock.model.Article;
 import com.jrad.gestiondestock.model.MvtStk;
+import com.jrad.gestiondestock.model.SourceMvtStk;
 import com.jrad.gestiondestock.model.TypeMvtStk;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -14,17 +16,19 @@ import java.time.Instant;
 public class MvtStkDto {
 
     private Integer id;
-    private Instant dateMvt;
 
+    private Instant dateMvt;
 
     private BigDecimal quantite;
 
-
     private ArticleDto article;
 
-
-
     private TypeMvtStk typeMvt;
+
+    private SourceMvtStk sourceMvt;
+
+    private Integer idEntreprise;
+
     public static MvtStkDto fromEntity(MvtStk mvtStk) {
         if (mvtStk == null) {
             return null;
@@ -36,7 +40,8 @@ public class MvtStkDto {
                 .quantite(mvtStk.getQuantite())
                 .article(ArticleDto.fromEntity(mvtStk.getArticle()))
                 .typeMvt(mvtStk.getTypeMvt())
-
+                .sourceMvt(mvtStk.getSourceMvt())
+                .idEntreprise(mvtStk.getIdEntreprise())
                 .build();
     }
 
@@ -51,8 +56,8 @@ public class MvtStkDto {
         mvtStk.setQuantite(dto.getQuantite());
         mvtStk.setArticle(ArticleDto.toEntity(dto.getArticle()));
         mvtStk.setTypeMvt(dto.getTypeMvt());
-
-
+        mvtStk.setSourceMvt(dto.getSourceMvt());
+        mvtStk.setIdEntreprise(dto.getIdEntreprise());
         return mvtStk;
     }
 }

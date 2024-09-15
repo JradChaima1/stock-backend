@@ -14,23 +14,26 @@ import java.util.List;
 @Data
 @Builder
 public class ClientDto {
-    private Integer id;
-    private String nom;
 
+    private Integer id;
+
+    private String nom;
 
     private String prenom;
 
-
     private AdresseDto adresse;
-
 
     private String photo;
 
     private String mail;
 
     private String numTel;
+
+    private Integer idEntreprise;
+
     @JsonIgnore
     private List<CommandeClientDto> commandeClients;
+
     public static ClientDto fromEntity(Client client) {
         if (client == null) {
             return null;
@@ -43,6 +46,7 @@ public class ClientDto {
                 .photo(client.getPhoto())
                 .mail(client.getMail())
                 .numTel(client.getNumTel())
+                .idEntreprise(client.getIdEntreprise())
                 .build();
     }
 
@@ -58,6 +62,7 @@ public class ClientDto {
         client.setPhoto(dto.getPhoto());
         client.setMail(dto.getMail());
         client.setNumTel(dto.getNumTel());
+        client.setIdEntreprise(dto.getIdEntreprise());
         return client;
     }
 }
